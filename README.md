@@ -1,1 +1,1 @@
-"# nvim-config" 
+Configuration folders and files for Neovim.
