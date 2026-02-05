@@ -9,6 +9,14 @@ return {
       jinja = { "djlint" },
       jinja2 = { "djlint" },
     },
+
+    -- Format on save
+    format_on_save = function(bufnr)
+      return {
+        timeout_ms = 2000,
+        lsp_fallback = true, -- if no conform formatter is configured, fall back to LSP
+      }
+    end,
   },
 }
 
