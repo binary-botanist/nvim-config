@@ -5,7 +5,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("catppuccin-mocha")
+      vim.cmd.colorscheme("catppuccin-frappe") --"catppuccin-mocha", "cattppuccin-macchiato"
     end,
   },
   {
