@@ -19,6 +19,34 @@ vim.keymap.set({ 'n' }, '<A-l>', '<C-w>l')
 vim.keymap.set({ 'n' }, '<leader>nt', '<cmd>Neotree toggle<cr>')
 vim.keymap.set({ 'n' }, '<leader>nc', '<cmd>Neotree close<cr>')
 
+-- LSP keymaps
+-- Semantic rename
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
+-- Go to definition
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
+
+
+-- Format file
+vim.keymap.set('n', '<leader>f', function()
+  local buf = vim.api.nvim_get_current_buf()
+
+  -- Check if any LSP client attached to this buffer supports formatting
+  local has_lsp_formatter = false
+  for _, client in pairs(vim.lsp.get_clients { bufnr = buf }) do
+    if client:supports_method("textDocument/formatting") then
+      has_lsp_formatter = true
+      break
+    end
+  end
+
+  if has_lsp_formatter then
+    vim.lsp.buf.format { async = true }
+  else
+    require("conform").format { async = true }
+  end
+end, { desc = "Format (LSP or Conform fallback)" })
+
+
 -- [[ Basic Autocommands ]].
 -- See `:h lua-guide-autocommands`, `:h autocmd`, `:h nvim_create_autocmd()`
 
