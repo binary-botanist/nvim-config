@@ -1,3 +1,5 @@
+vim.g.python3_host_prog = [[D:\users\kernbauers\AppData\Local\Programs\Python\Python312\python.exe]]
+
 -- Options file (= editor behavior and settings)
 require('config.options')
 
@@ -41,6 +43,19 @@ vim.api.nvim_create_user_command('GitBlameLine', function()
   local filename = vim.api.nvim_buf_get_name(0)
   print(vim.fn.system({ 'git', 'blame', '-L', line_number .. ',+1', filename }))
 end, { desc = 'Print the git blame for the current line' })
+
+-- Synchronize server clipboard with local clipboard
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
 
 -- [[ Add optional packages ]]
 -- Nvim comes bundled with a set of packages that are not enabled by
