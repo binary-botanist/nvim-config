@@ -59,23 +59,4 @@ vim.api.nvim_create_user_command("GitBlameLine", function()
 	print(vim.fn.system({ "git", "blame", "-L", line_number .. ",+1", filename }))
 end, { desc = "Print the git blame for the current line" })
 
--- Synchronize server clipboard with local clipboard
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-  },
-  paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-  },
-}
 
--- [[ Add optional packages ]]
--- Nvim comes bundled with a set of packages that are not enabled by
--- default. You can enable any of them by using the `:packadd` command.
-
--- For example, to add the "nohlsearch" package to automatically turn off search highlighting after
--- 'updatetime' and when going to insert mode
-vim.cmd("packadd! nohlsearch")
