@@ -5,4 +5,4 @@ Configuration folders and files for Neovim.
 
 # Configuration versions
 - config_v1: Folder structure with split for config, lsp, and plugins.
-- config_v2: Very slim configuration based just on one init.lua file.
+- config_v2: Very slim configuration (Telescope, Ty Python LSP, ToggleTerm) based just on one init.lua file.
